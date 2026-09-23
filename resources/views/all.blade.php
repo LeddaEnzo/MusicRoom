@@ -4,13 +4,10 @@
     <h3>{{ $music->name }}</h3>
     <p>{{ $music->composer }}</p>
     <p>Game : {{ $music->game }}</p>
-    <p>Types : 
-        @foreach ($music->types as $type)
-            {{ $type->name }}{{ !$loop->last ? ', ' : '' }}
-        @endforeach
-    </p>
+    <p>Précision : {{ $music->precision }}</p>
+    <p>Lien : <a href="{{ $music->link }}" target="_blank">{{ $music->link }}</a></p>
     <a href="{{ route('music.show', ['id' => $music->id]) }}">Voir la musique</a>
-    <a href="{{ route('music.edit_view', ['id' => $music->id]) }}">Modifier la musique</a>
+    <a href="{{ route('music.edit.view', ['id' => $music->id]) }}">Modifier la musique</a>
     <a href="{{ route('music.delete', ['id' => $music->id])}}">Supprimer la musique</a>
     </br>
 @endforeach
