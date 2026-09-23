@@ -10,6 +10,7 @@ class Music extends Model
         'name',
         'composer',
         'game',
+        'precision',
         'link'
     ];
 }
