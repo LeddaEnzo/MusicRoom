@@ -14,7 +14,7 @@ class MusicController extends Controller
 
     public function show($id) {
         $music = Music::findOrFail($id);
-        return view('music.show', compact('music'));
+        return view('show', compact('music'));
     }
 
     public function delete($id) {
@@ -42,7 +42,7 @@ class MusicController extends Controller
 
     public function edit_view($id) {
         $music = Music::findOrFail($id);
-        return view('music.edit', compact('music'));
+        return view('edit', compact('music'));
     }
 
     public function edit(Request $request, $id) {

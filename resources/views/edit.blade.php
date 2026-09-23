@@ -13,4 +13,3 @@
     <input type="url" name="link" id="link" value="{{ $music->link }}" required>
     <button type="submit">Mettre à jour la musique</button>
 </form>
-{{$types}}
