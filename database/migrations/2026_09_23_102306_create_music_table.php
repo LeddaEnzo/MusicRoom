@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('music', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('compser');
+            $table->string('composer');
             $table->string('game');
+            $table->string('precision');
             $table->string('link');
             $table->timestamps();
         });
