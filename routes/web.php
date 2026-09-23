@@ -25,9 +25,9 @@ Route::prefix('music')->name('music.')->group(function () {
 
     //Créer musique
     Route::get('/create', function () {
-        return view('music.create');
-    })->name('music.create');
-    Route::post('/create', [MusicController::class, 'create'])->name('music.create');
+        return view('create');
+    })->name('create');
+    Route::post('/create', [MusicController::class, 'create'])->name('create');
 
     //Modifier musique
     Route::get('/{id}/edit', [MusicController::class, 'edit_view'])->name('edit.view');

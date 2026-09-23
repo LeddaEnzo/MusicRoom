@@ -3,17 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Music;
 
 class MusicController extends Controller
 {
     public function list() {
         $musics = Music::all();
-        return view('music.list', compact('musics'));
+        return view('all', compact('musics'));
     }
 
-    public function create_view() {
-        return view('music.create');
+    public function show($id) {
+        $music = Music::findOrFail($id);
+        return view('music.show', compact('music'));
     }
+
+    public function delete($id) {
+        $music = Music::findOrFail($id);
+        $music->delete();
+        return redirect()
+            ->route('music.list')
+            ->with('Music successfully deleted.');
+    }
+
 
     public function create(Request $request) {
         $validated = $request->validate([
@@ -27,10 +38,6 @@ class MusicController extends Controller
         return redirect()
             ->route('music.list')
             ->with('Music successfully added.');
-    }
-    public function show($id) {
-        $music = Music::findOrFail($id);
-        return view('music.show', compact('music'));
     }
 
     public function edit_view($id) {
@@ -52,11 +59,8 @@ class MusicController extends Controller
             ->route('music.show', $music->id)
             ->with('Music successfully updated.');
     }
-    public function delete($id) {
-        $music = Music::findOrFail($id);
-        $music->delete();
-        return redirect()
-            ->route('music.list')
-            ->with('Music successfully deleted.');
-    }
+
+    /* public function create_view() {
+        return view('create');
+    } */
 }
