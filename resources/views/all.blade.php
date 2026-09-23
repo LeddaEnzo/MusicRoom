@@ -2,7 +2,7 @@
 <button><a href="{{ route('music.create') }}">Créer une nouvelle musique</a></button  >
 @foreach ($musics as $music)
     <h3>{{ $music->name }}</h3>
-    <p>{{ $music->composer }}</p>
+    <p>{{ $music->composer}}</p>
     <p>Game : {{ $music->game }}</p>
     <p>Précision : {{ $music->precision }}</p>
     <p>Lien : <a href="{{ $music->link }}" target="_blank">{{ $music->link }}</a></p>
