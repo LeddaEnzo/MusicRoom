@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Music;
 use App\Http\Controllers\MusicController;
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,10 +15,12 @@ Route::get('/hello', function () {
     return 'Hello, World!';
 });
 
-Route::get('/music', function () {
-    return 'music';
+Route::get('/test-auth', function () {
+    if (Auth::check()) {
+        return Auth::user()->name;
+    }
+    return 'Not authenticated';
 });
-
 
 Route::prefix('music')->name('music.')->group(function () {
     //afficher music
@@ -36,3 +40,6 @@ Route::prefix('music')->name('music.')->group(function () {
     //Supprimer musique
     Route::get('/{id}/delete', [MusicController::class, 'delete'])->name('delete');
 });
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.store');
