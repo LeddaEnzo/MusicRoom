@@ -6,6 +6,7 @@ use App\Models\Music;
 use App\Http\Controllers\MusicController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RatingController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,15 +31,15 @@ Route::prefix('music')->name('music.')->group(function () {
     //Créer musique
     Route::get('/create', function () {
         return view('create');
-    })->name('create');
+    })->name('create')->middleware('auth');
     Route::post('/create', [MusicController::class, 'create'])->name('create');
 
     //Modifier musique
-    Route::get('/{id}/edit', [MusicController::class, 'edit_view'])->name('edit.view');
-    Route::post('/{id}/edit', [MusicController::class, 'edit'])->name('edit');
+    Route::get('/{id}/edit', [MusicController::class, 'edit_view'])->name('edit.view')->middleware('auth');
+    Route::post('/{id}/edit', [MusicController::class, 'edit'])->name('edit')->middleware('auth');
 
     //Supprimer musique
-    Route::get('/{id}/delete', [MusicController::class, 'delete'])->name('delete');
+    Route::get('/{id}/delete', [MusicController::class, 'delete'])->name('delete')->middleware('auth');
 });
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -47,3 +48,5 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.store');
+
+Route::post('/music/{id}/rate', [RatingController::class, 'rate'])->name('music.rate')->middleware('auth');

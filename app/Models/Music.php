@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Rating;
 
 class Music extends Model
 {
@@ -13,4 +14,9 @@ class Music extends Model
         'precision',
         'link'
     ];
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
 }
