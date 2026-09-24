@@ -13,7 +13,22 @@
     <body>
         <header>
             <h1>Liste des Musiques</h1>
-            <button><a href="{{ route('music.create') }}">Créer une nouvelle musique</a></button>
+            <div class=header-buttons>
+                <button><a href="{{ route('music.create') }}">Créer une nouvelle musique</a></button>
+                @if (Auth::check())
+                    <p>Connecté en tant que : {{ Auth::user()->name }}</p>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit">Se déconnecter</button>
+                    </form>
+                @else
+                    <button><a href="{{ route('login') }}">Se connecter</a></button>
+                @endif
+            </div>
+            <div class="search-container">
+                <input type="text" id="music-search" placeholder="Rechercher une musique...">
+            </div>
         </header>
         <div class="music-grid">
             @foreach ($musics as $music)
@@ -37,16 +52,6 @@
             @endforeach
             </br>
         </div>
-        </br> </br>
-        @if (Auth::check())
-            <p>Connecté en tant que : {{ Auth::user()->name }}</p>
-
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit">Se déconnecter</button>
-            </form>
-        @else
-            <button><a href="{{ route('login') }}">Se connecter</a></button>
-        @endif
     </body>
+    <script src="{{ asset('js/app.js') }}"></script>
 </html>
