@@ -10,7 +10,14 @@
 
 header {
     background-color: #fff;
-    padding: 5px;
+    padding: 20px;
+}
+
+.header-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 body {
@@ -40,6 +47,7 @@ button {
     max-width: 1200px;
     margin: 0 auto;
     margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 .music-card {
@@ -78,4 +86,18 @@ button {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
+}
+
+.search-container {
+    text-align: left;
+    margin-top: 20px;
+}
+
+#music-search {
+    width: 30%;
+    padding: 12px 15px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
 }
