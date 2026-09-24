@@ -8,9 +8,15 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+header {
+    background-color: #fff;
+    padding: 5px;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #fdf5e3;
+    background-color: #fdf9f1;
+    margin: 0;
 }
 
 h1 {
@@ -48,6 +54,13 @@ button {
     transition: transform 0.2s ease-in-out;
 }
 
+.music-info {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
 .music-buttons button {
     border-color: #3758ff;
     width: 100%;
@@ -55,4 +68,14 @@ button {
     margin: 5px;
     background-color: #e3f3ff;
     font-family: Arial, sans-serif;
+}
+
+.music-show {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+    max-width: 90%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
 }
