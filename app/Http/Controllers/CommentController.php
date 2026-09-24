@@ -42,11 +42,12 @@ class CommentController extends Controller
             'content' => 'required|string|max:1000',
         ]);
 
+        $comment = Comment::findOrFail($id);
+        
         if ($comment->user_id !== Auth::id()) {
         abort(403);
     }
 
-        $comment = Comment::findOrFail($id);
         $comment->content = $request->content;
         $comment->save();
 
@@ -60,7 +61,7 @@ class CommentController extends Controller
         if ($comment->user_id !== Auth::id()) {
         abort(403);
     }
-    
+
         $musicId = $comment->music_id;
         $comment->delete();
 
