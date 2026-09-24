@@ -53,3 +53,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.st
 Route::post('/music/{id}/rate', [RatingController::class, 'rate'])->name('music.rate')->middleware('auth');
 
 Route::post('/music/{id}/comment', [CommentController::class, 'store'])->name('music.comment')->middleware('auth');
+
+Route::get('/comment/{id}/edit', [CommentController::class, 'edit'])->name('comment.edit')->middleware('auth');
+Route::post('/comment/{id}/edit', [CommentController::class, 'update'])->name('comment.update')->middleware('auth');
+Route::get('/comment/{id}/delete', [CommentController::class, 'delete'])->name('comment.delete')->middleware('auth');

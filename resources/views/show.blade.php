@@ -11,6 +11,9 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body>
+        @if (session('success'))
+            <p>{{ session('success') }}</p>
+        @endif
         <h1>{{ $music->name }}</h1>
         <h3>{{ $music->composer }}</h3>
         <p>{{ $music->game }}</p>
@@ -74,6 +77,15 @@
             </small>
 
             <p>{{ $comment->content }}</p>
+            @if (Auth::check() && $comment->user_id === Auth::id())
+                <a href="{{ route('comment.edit', ['id' => $comment->id]) }}">
+                    Modifier
+                </a>
+
+                <a href="{{ route('comment.delete', ['id' => $comment->id]) }}">
+                    Supprimer
+                </a>
+            @endif
         </div>
 
         <hr>
