@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Music;
+use App\Models\Rating;
+use Illuminate\Support\Facades\Auth;
 
 class MusicController extends Controller
 {
@@ -14,7 +16,17 @@ class MusicController extends Controller
 
     public function show($id) {
         $music = Music::findOrFail($id);
-        return view('show', compact('music'));
+        $userRating = null;
+
+        if (Auth::check()) {
+            $userRating = Rating::where('music_id', $id)
+                ->where('user_id', Auth::id())
+                ->first();
+        }
+
+        $averageRating = Rating::where('music_id', $id)->avg('rating');
+        
+        return view('show', compact('music', 'userRating', 'averageRating'));
     }
 
     public function delete($id) {
