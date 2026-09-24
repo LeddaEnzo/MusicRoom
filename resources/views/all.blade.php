@@ -15,6 +15,7 @@
             <h1>Liste des Musiques</h1>
             <div class=header-buttons>
                 <button><a href="{{ route('music.create') }}">Créer une nouvelle musique</a></button>
+                <button><a href="{{ route('register') }}">S'inscrire</a></button>
                 @if (Auth::check())
                     <p>Connecté en tant que : {{ Auth::user()->name }}</p>
 
