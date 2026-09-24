@@ -14,6 +14,10 @@
         @if (session('success'))
             <script>alert(@json(session('success')));</script>
         @endif
+        <button><a href="{{ route('music.list') }}">Retour à la liste des musiques</a></button>
+        <button><a href="{{ route('music.edit.view', ['id' => $music->id]) }}">Modifier la musique</a></button>
+        <button><a href="{{ route('music.delete', ['id' => $music->id])}}">Supprimer la musique</a></button>
+        </br> </br>
         <h1>{{ $music->name }}</h1>
         <h3>{{ $music->composer }}</h3>
         <p>{{ $music->game }}</p>
@@ -123,8 +127,5 @@
     </p>
 @endif
 </br>
-        <button><a href="{{ route('music.list') }}">Retour à la liste des musiques</a></button>
-        <button><a href="{{ route('music.edit.view', ['id' => $music->id]) }}">Modifier la musique</a></button>
-        <button><a href="{{ route('music.delete', ['id' => $music->id])}}">Supprimer la musique</a></button>
     </body>
 </html>
