@@ -56,7 +56,61 @@
             <a href="{{ route('login') }}">Connectez-vous</a>
             pour noter cette musique.
         </p>
-    @endif
+    @endif 
+    </br> </br>
+    <hr>
+
+<h2>Commentaires</h2>
+
+@if ($comments->isEmpty())
+    <p>Aucun commentaire pour le moment.</p>
+@else
+    @foreach ($comments as $comment)
+        <div>
+            <strong>{{ $comment->user->name }}</strong>
+
+            <small>
+                {{ $comment->created_at->format('d/m/Y H:i') }}
+            </small>
+
+            <p>{{ $comment->content }}</p>
+        </div>
+
+        <hr>
+    @endforeach
+@endif 
+
+    @if (Auth::check())
+    <h2>Ajouter un commentaire</h2>
+
+    <form method="POST" action="{{ route('music.comment', ['id' => $music->id]) }}">
+        @csrf
+
+        <textarea
+            name="content"
+            id="content"
+            rows="5"
+            cols="50"
+            maxlength="1000"
+            required
+            placeholder="Écrivez votre commentaire..."
+        ></textarea>
+
+        <br>
+
+        @error('content')
+            <p>{{ $message }}</p>
+        @enderror
+
+        <button type="submit">Publier</button>
+    </form>
+@else
+    <p>
+        <a href="{{ route('login') }}">Connectez-vous</a>
+        pour commenter cette musique.
+    </p>
+@endif
+</br>
         <button><a href="{{ route('music.list') }}">Retour à la liste des musiques</a></button>
         <button><a href="{{ route('music.edit.view', ['id' => $music->id]) }}">Modifier la musique</a></button>
         <button><a href="{{ route('music.delete', ['id' => $music->id])}}">Supprimer la musique</a></button>

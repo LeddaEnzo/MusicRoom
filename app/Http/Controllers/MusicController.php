@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Music;
 use App\Models\Rating;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class MusicController extends Controller
@@ -26,7 +27,10 @@ class MusicController extends Controller
 
         $averageRating = Rating::where('music_id', $id)->avg('rating');
         
-        return view('show', compact('music', 'userRating', 'averageRating'));
+        $comments = Comment::with('user')->where('music_id', $id)->latest()->get();
+
+        return view('show', compact('music', 'userRating', 'averageRating', 'comments'));
+
     }
 
     public function delete($id) {
