@@ -12,7 +12,7 @@
     </head>
     <body>
         @if (session('success'))
-            <p>{{ session('success') }}</p>
+            <script>alert(@json(session('success')));</script>
         @endif
         <h1>{{ $music->name }}</h1>
         <h3>{{ $music->composer }}</h3>
