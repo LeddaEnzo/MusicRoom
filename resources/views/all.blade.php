@@ -1,3 +1,6 @@
+@php
+    use Illuminate\Support\Facades\Auth;
+@endphp
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -28,5 +31,16 @@
             @endforeach
             </br>
         </div>
+        </br> </br>
+        @if (Auth::check())
+            <p>Connecté en tant que : {{ Auth::user()->name }}</p>
+
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit">Se déconnecter</button>
+            </form>
+        @else
+            <button><a href="{{ route('login') }}">Se connecter</a></button>
+        @endif
     </body>
 </html>
