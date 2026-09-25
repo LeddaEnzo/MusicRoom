@@ -12,8 +12,10 @@ use Illuminate\Support\Str;
 class MusicController extends Controller
 {
     public function list() {
-        $musics = Music::all();
-        return view('all', compact('musics'));
+        $musics = Music::orderBy('name', 'asc')->get();
+        $tri = 'name';
+        $nextOrder = 'desc';
+        return view('all', compact('musics', 'tri', 'nextOrder'));
     }
 
     public function show($id) {
@@ -86,6 +88,24 @@ class MusicController extends Controller
         return redirect()
             ->route('music.show', $music->id)
             ->with('Music successfully updated.');
+    }
+
+    public function trier(Request $request) {
+        $tri = $request->input('tri');
+        $order = $request->input('order', 'asc');
+        if ($tri === 'composer') {
+            $musics = Music::orderBy('composer', $order)->get();
+        } elseif ($tri === 'game') {
+            $musics = Music::orderBy('game', $order)->get();
+        } elseif ($tri === 'name') {
+            $musics = Music::orderBy('name', $order)->get();
+        } else {
+            $tri = 'name';
+            $order = 'asc';
+            $musics = Music::orderBy('name', $order)->get();
+        }
+        $nextOrder = $order === 'asc' ? 'desc' : 'asc';
+        return view('all', compact('musics', 'tri', 'nextOrder'));
     }
 
     /* public function create_view() {

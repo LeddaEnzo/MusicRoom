@@ -42,6 +42,9 @@ Route::prefix('music')->name('music.')->group(function () {
 
     //Supprimer musique
     Route::get('/{id}/delete', [MusicController::class, 'delete'])->name('delete')->middleware('auth');
+
+    //Trier la musique
+    Route::get('/sort', [MusicController::class, 'trier'])->name('sort');
 });
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -52,7 +55,6 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 
 Route::post('/music/{id}/rate', [RatingController::class, 'rate'])->name('music.rate')->middleware('auth');
-
 Route::post('/music/{id}/comment', [CommentController::class, 'store'])->name('music.comment')->middleware('auth');
 
 Route::get('/comment/{id}/edit', [CommentController::class, 'edit'])->name('comment.edit')->middleware('auth');

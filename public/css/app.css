@@ -102,6 +102,16 @@ button {
     box-sizing: border-box;
 }
 
+form {
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+form button {
+    font-size: 10px;
+    padding: 5px;
+}
+
 .music-nav {
     display: flex;
     justify-content: space-between;
