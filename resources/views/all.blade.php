@@ -30,6 +30,16 @@
             <div class="search-container">
                 <input type="text" id="music-search" placeholder="Rechercher une musique...">
             </div>
+            <form method="GET" action="{{ route('music.sort') }}">
+                <label for="tri">Trier par :</label>
+                <select name="tri" id="tri">
+                    <option value="name" {{ $tri === 'name' ? 'selected' : '' }}>Nom de la musique</option>
+                    <option value="composer" {{ $tri === 'composer' ? 'selected' : '' }}>Nom du compositeur</option>
+                    <option value="game" {{ $tri === 'game' ? 'selected' : '' }}>Nom du jeu</option>
+                </select>
+                <input type="hidden" name="ordre" value="{{ $ordreSuivant }}">
+                <button type="submit">Trier</button>
+            </form>
         </header>
         <div class="music-grid">
             @foreach ($musics as $music)

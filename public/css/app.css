@@ -101,3 +101,13 @@ button {
     border-radius: 8px;
     box-sizing: border-box;
 }
+
+form {
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+form button {
+    font-size: 10px;
+    padding: 5px;
+}

@@ -11,8 +11,10 @@ use Illuminate\Support\Facades\Auth;
 class MusicController extends Controller
 {
     public function list() {
-        $musics = Music::all();
-        return view('all', compact('musics'));
+        $musics = Music::orderBy('name', 'asc')->get();
+        $tri = 'name';
+        $ordreSuivant = 'desc';
+        return view('all', compact('musics', 'tri', 'ordreSuivant'));
     }
 
     public function show($id) {
@@ -74,6 +76,24 @@ class MusicController extends Controller
         return redirect()
             ->route('music.show', $music->id)
             ->with('Music successfully updated.');
+    }
+
+    public function trier(Request $request) {
+        $tri = $request->input('tri');
+        $ordre = $request->input('ordre', 'asc');
+        if ($tri === 'composer') {
+            $musics = Music::orderBy('composer', $ordre)->get();
+        } elseif ($tri === 'game') {
+            $musics = Music::orderBy('game', $ordre)->get();
+        } elseif ($tri === 'name') {
+            $musics = Music::orderBy('name', $ordre)->get();
+        } else {
+            $tri = 'name';
+            $ordre = 'asc';
+            $musics = Music::orderBy('name', $ordre)->get();
+        }
+        $ordreSuivant = $ordre === 'asc' ? 'desc' : 'asc';
+        return view('all', compact('musics', 'tri', 'ordreSuivant'));
     }
 
     /* public function create_view() {
