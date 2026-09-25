@@ -29,6 +29,11 @@
             </div>
             <div class="search-container">
                 <input type="text" id="music-search" placeholder="Rechercher une musique...">
+                @if (Auth::check())
+                    <a href="{{ route('account') }}">
+                        <button type="submit">Mon Compte</button>
+                    </a>
+                @endif
             </div>
         </header>
         <div class="music-grid">

@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AccountController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,3 +58,5 @@ Route::post('/music/{id}/comment', [CommentController::class, 'store'])->name('m
 Route::get('/comment/{id}/edit', [CommentController::class, 'edit'])->name('comment.edit')->middleware('auth');
 Route::post('/comment/{id}/edit', [CommentController::class, 'update'])->name('comment.update')->middleware('auth');
 Route::get('/comment/{id}/delete', [CommentController::class, 'delete'])->name('comment.delete')->middleware('auth');
+
+Route::get('/account', [AccountController::class, 'index'])->name('account')->middleware('auth');

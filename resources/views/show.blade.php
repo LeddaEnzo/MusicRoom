@@ -16,9 +16,16 @@
         @endif
 
         <nav class="music-nav">
-            <button><a href="{{ route('music.list') }}">Retour à la liste des musiques</a></button>
-            <button><a href="{{ route('music.edit.view', ['id' => $music->id]) }}">Modifier la musique</a></button>
-            <button><a href="{{ route('music.delete', ['id' => $music->id])}}">Supprimer la musique</a></button>
+            <div class="music-nav-left">
+                <a href="{{ route('music.list') }}">Retour à la liste des musiques</a>
+                <a href="{{ route('music.edit.view', ['id' => $music->id]) }}">Modifier la musique</a>
+                <a href="{{ route('music.delete', ['id' => $music->id])}}">Supprimer la musique</a>
+            </div>
+            @if (Auth::check())
+                <a class="account-link" href="{{ route('account') }}">
+                    Mon Compte
+                </a>
+            @endif
         </nav>
 
         <div class="music-image-placeholder">

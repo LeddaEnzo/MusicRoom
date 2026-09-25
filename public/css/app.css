@@ -104,12 +104,17 @@ button {
 
 .music-nav {
     display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
 
     padding: 15px 30px;
 
     border-bottom: 2px solid black;
+}
+
+.music-nav-left {
+    display: flex;
+    gap: 10px;
 }
 
 .music-nav a {
