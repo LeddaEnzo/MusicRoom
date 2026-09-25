@@ -111,3 +111,124 @@ form button {
     font-size: 10px;
     padding: 5px;
 }
+
+.music-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    padding: 15px 30px;
+
+    border-bottom: 2px solid black;
+}
+
+.music-nav a {
+    padding: 8px 15px;
+
+    border: 1px solid black;
+
+    color: black;
+    text-decoration: none;
+}
+
+.music-nav a:hover {
+    background-color: black;
+    color: white;
+}
+
+.music-image-placeholder {
+    width: 80%;
+    height: 300px;
+
+    margin: 30px auto;
+
+    border: 2px solid black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 30px;
+}
+
+.music-main-info {
+    width: 80%;
+    margin: 30px auto;
+
+    display: grid;
+    grid-template-columns: 200px 1fr;
+
+    gap: 30px;
+}
+
+.music-rating {
+    border: 2px solid black;
+    padding: 15px;
+    
+    display: flex;
+    flex-direction: column;
+
+    gap: 25px;
+}
+
+.music-rating div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.music-rating span {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.music-rating strong {
+    font-size: 24px;
+}
+
+.music-rating a {
+    padding: 8px;
+
+    border: 1px solid black;
+
+    text-align: center;
+
+    color: black;
+    text-decoration: none;
+}
+
+.music-details h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.music-details h2 {
+    margin-top: 5px;
+
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.music-details hr {
+    border: none;
+    border-top: 2px solid black;
+
+    margin: 20px 0;
+}
+
+.music-details p {
+    font-size: 18px;
+}
+
+.comments-section {
+    width: 80%;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 30px;
+}
+
+.comments-list, .comments-form {
+    border: 2px solid black;
+    padding: 20px;
+}
