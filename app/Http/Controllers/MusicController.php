@@ -13,8 +13,8 @@ class MusicController extends Controller
     public function list() {
         $musics = Music::orderBy('name', 'asc')->get();
         $tri = 'name';
-        $ordreSuivant = 'desc';
-        return view('all', compact('musics', 'tri', 'ordreSuivant'));
+        $nextOrder = 'desc';
+        return view('all', compact('musics', 'tri', 'nextOrder'));
     }
 
     public function show($id) {
@@ -80,20 +80,20 @@ class MusicController extends Controller
 
     public function trier(Request $request) {
         $tri = $request->input('tri');
-        $ordre = $request->input('ordre', 'asc');
+        $order = $request->input('order', 'asc');
         if ($tri === 'composer') {
-            $musics = Music::orderBy('composer', $ordre)->get();
+            $musics = Music::orderBy('composer', $order)->get();
         } elseif ($tri === 'game') {
-            $musics = Music::orderBy('game', $ordre)->get();
+            $musics = Music::orderBy('game', $order)->get();
         } elseif ($tri === 'name') {
-            $musics = Music::orderBy('name', $ordre)->get();
+            $musics = Music::orderBy('name', $order)->get();
         } else {
             $tri = 'name';
-            $ordre = 'asc';
-            $musics = Music::orderBy('name', $ordre)->get();
+            $order = 'asc';
+            $musics = Music::orderBy('name', $order)->get();
         }
-        $ordreSuivant = $ordre === 'asc' ? 'desc' : 'asc';
-        return view('all', compact('musics', 'tri', 'ordreSuivant'));
+        $nextOrder = $order === 'asc' ? 'desc' : 'asc';
+        return view('all', compact('musics', 'tri', 'nextOrder'));
     }
 
     /* public function create_view() {

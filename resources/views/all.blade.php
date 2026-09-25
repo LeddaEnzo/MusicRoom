@@ -37,7 +37,7 @@
                     <option value="composer" {{ $tri === 'composer' ? 'selected' : '' }}>Nom du compositeur</option>
                     <option value="game" {{ $tri === 'game' ? 'selected' : '' }}>Nom du jeu</option>
                 </select>
-                <input type="hidden" name="ordre" value="{{ $ordreSuivant }}">
+                <input type="hidden" name="order" value="{{ $nextOrder }}">
                 <button type="submit">Trier</button>
             </form>
         </header>
