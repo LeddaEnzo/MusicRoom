@@ -7,6 +7,7 @@ use App\Models\Music;
 use App\Models\Rating;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class MusicController extends Controller
 {
@@ -18,6 +19,7 @@ class MusicController extends Controller
     public function show($id) {
         $music = Music::findOrFail($id);
         $userRating = null;
+        $youtubeId = $this->getYoutubeId($music->link);
 
         if (Auth::check()) {
             $userRating = Rating::where('music_id', $id)
@@ -29,9 +31,19 @@ class MusicController extends Controller
         
         $comments = Comment::with('user')->where('music_id', $id)->latest()->get();
 
-        return view('show', compact('music', 'userRating', 'averageRating', 'comments'));
+        return view('show', compact('music', 'userRating', 'averageRating', 'comments', 'youtubeId'));
 
     }
+
+    private function getYoutubeId($link) {
+        preg_match(
+            '/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/',
+            $link,
+            $matches
+        );
+
+            return $matches[1] ?? null;
+        }
 
     public function delete($id) {
         $music = Music::findOrFail($id);

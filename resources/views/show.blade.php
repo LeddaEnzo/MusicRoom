@@ -28,8 +28,11 @@
             @endif
         </nav>
 
-        <div class="music-image-placeholder">
-            Image de la musique
+        <div class="music-player">
+            <iframe src="https://www.youtube.com/embed/{{ $youtubeId }}"
+                title="{{ $music->name }}"
+                allowfullscreen>
+            </iframe>
         </div>
 
         <div class="music-main-info">
