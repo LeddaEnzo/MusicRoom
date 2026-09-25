@@ -12,7 +12,7 @@
 
     <body>
         <header>
-            <h1>Liste des Musiques</h1>
+            <h1>MusicRoom</h1>
             <div class=header-buttons>
                 <button><a href="{{ route('music.create') }}">Créer une nouvelle musique</a></button>
                 <button><a href="{{ route('register') }}">S'inscrire</a></button>
